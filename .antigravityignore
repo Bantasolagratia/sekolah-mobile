@@ -1,0 +1,25 @@
+# Abaikan SEMUA folder bawaan sistem di root server Anda
+.android/
+.cache/
+.config/
+.copilot/
+.dart-tool/
+.dartServer/
+.docker/
+.dotnet/
+.gemini/
+.gradle/
+.local/
+.m2/
+.npm/
+.pub-cache/
+.ssh/
+.vscode/
+.vscode-server/
+snap/
+Android/
+docs/
+flutter-sdk/
+
+# Abaikan berkas log dan konfigurasi bash
+.*
