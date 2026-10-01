@@ -1,6 +1,8 @@
 package com.sekolah.mobile.data.repository
 
 import com.sekolah.mobile.data.model.Guru
+import com.sekolah.mobile.data.model.IdentityResponse
+import com.sekolah.mobile.data.model.RegistrationRequest
 import com.sekolah.mobile.data.model.UserProfileResponse
 import com.sekolah.mobile.data.remote.ApiClient
 import com.sekolah.mobile.data.storage.PlatformStorage
@@ -58,6 +60,30 @@ class AuthRepository(
         } catch (_: Exception) {}
 
         return profile
+    }
+
+    suspend fun verifyStudentIdentity(nis: String): IdentityResponse {
+        return apiClient.verifyIdentity("MURID", nis)
+    }
+
+    suspend fun registerStudent(
+        nis: String,
+        email: String,
+        password: String,
+        telp: String,
+        wa: String
+    ): UserProfileResponse {
+        apiClient.register(
+            RegistrationRequest(
+                role = "MURID",
+                identifier = nis.trim(),
+                email = email.trim(),
+                password = password,
+                telp = telp.trim().ifEmpty { null },
+                wa = wa.trim().ifEmpty { null }
+            )
+        )
+        return login(email.trim(), password)
     }
 
     fun logout() {

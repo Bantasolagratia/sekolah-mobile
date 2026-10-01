@@ -18,12 +18,14 @@ import com.sekolah.mobile.ui.screens.guru.GuruModuleScreen
 import com.sekolah.mobile.ui.screens.home.HomeScreen
 import com.sekolah.mobile.ui.screens.login.LoginScreen
 import com.sekolah.mobile.ui.screens.profile.ProfileScreen
+import com.sekolah.mobile.ui.screens.register.RegisterScreen
 import com.sekolah.mobile.ui.theme.LightBackground
 import com.sekolah.mobile.ui.theme.PrimaryTeal
 import com.sekolah.mobile.ui.theme.SekolahMobileTheme
 
 enum class ScreenState {
     LOGIN,
+    REGISTER,
     MAIN
 }
 
@@ -57,6 +59,23 @@ fun App() {
                             currentProfile = authRepository.getCachedProfile()
                             currentTab = NavigationTab.HOME
                             screenState = ScreenState.MAIN
+                        },
+                        onNavigateToRegister = {
+                            screenState = ScreenState.REGISTER
+                        }
+                    )
+                }
+
+                ScreenState.REGISTER -> {
+                    RegisterScreen(
+                        authRepository = authRepository,
+                        onRegisterSuccess = {
+                            currentProfile = authRepository.getCachedProfile()
+                            currentTab = NavigationTab.HOME
+                            screenState = ScreenState.MAIN
+                        },
+                        onNavigateToLogin = {
+                            screenState = ScreenState.LOGIN
                         }
                     )
                 }

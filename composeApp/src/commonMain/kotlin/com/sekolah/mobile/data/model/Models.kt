@@ -99,3 +99,31 @@ data class Guru(
         get() = jabatan?.trim()?.takeIf { it.isNotEmpty() } ?: "Guru Pengajar"
 }
 
+@Serializable
+data class VerifyIdentityRequest(
+    val role: String,
+    val identifier: String
+)
+
+@Serializable
+data class IdentityResponse(
+    val found: Boolean = false,
+    val role: String? = null,
+    val identifier: String? = null,
+    val name: String? = null,
+    val detail: String? = null,
+    val telp: String? = null,
+    val wa: String? = null,
+    val message: String? = null
+)
+
+@Serializable
+data class RegistrationRequest(
+    val role: String,
+    val identifier: String,
+    val email: String,
+    val password: String,
+    val telp: String? = null,
+    val wa: String? = null
+)
+

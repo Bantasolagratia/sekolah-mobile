@@ -29,5 +29,11 @@ object ApiConfig {
 
     fun getGuruUrl(): String =
         "http://${getHost()}:$API_PORT/management/guru"
+
+    fun getVerifyUrl(): String =
+        "http://${getHost()}:$API_PORT/auth-flow/verify"
+
+    fun getRegisterUrl(): String =
+        "http://${getHost()}:$API_PORT/auth-flow/register"
 }
 

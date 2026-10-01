@@ -37,7 +37,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun LoginScreen(
     authRepository: AuthRepository,
-    onLoginSuccess: () -> Unit
+    onLoginSuccess: () -> Unit,
+    onNavigateToRegister: () -> Unit = {}
 ) {
     val coroutineScope = rememberCoroutineScope()
     var email by remember { mutableStateOf("wrenley@murid.sekolah.com") }
@@ -235,7 +236,29 @@ fun LoginScreen(
                     )
                 }
 
-                Spacer(modifier = Modifier.height(20.dp))
+                // Register Navigation Link
+                Spacer(modifier = Modifier.height(18.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "Belum memiliki akun siswa?",
+                        fontSize = 13.sp,
+                        color = SlateGray
+                    )
+                    TextButton(onClick = onNavigateToRegister) {
+                        Text(
+                            text = "Daftar di sini",
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = PrimaryTeal
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(12.dp))
 
                 // Server Host Config Button
                 TextButton(
